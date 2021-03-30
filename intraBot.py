@@ -6,7 +6,6 @@ import yfinance as yf
 import sys
 import os
 from datetime import datetime, timedelta
-import schedule
 import time
 from intraPreload import *
 import operator
@@ -290,9 +289,13 @@ def job():
 
     return
 
-# schedule.every().day.at("00:50").do(job)
-# schedule.every().day.at("22:40").do(job)
-# schedule.every().day.at("22:42").do(job)
+print("Before starting the bot you need to check if the account currently holds a position.")
+posit = input("Type y if holds a position and n if not: ")
+
+if posit == 'y' or posit == 'Y':
+    position = True
+else:
+    position = False
 
 while True:
     job()
